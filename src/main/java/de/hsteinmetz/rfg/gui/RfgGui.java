@@ -18,6 +18,7 @@ public class RfgGui {
     private JTextField txtLength;
     private JButton createButton;
 
+    // TODO JFileChooser
     public RfgGui() {
 
         createButton.addActionListener((e) -> {
@@ -35,19 +36,19 @@ public class RfgGui {
             if(!name.isEmpty() && !name.matches("\\s+")) {
                 if (preset.contains("PPTX")) {
                     Generator.generate(String.format("%s.%s", name, "pptx"),
-                            32142);
+                            1536000);
                 }
                 else if (preset.contains("DOCX")) {
                     Generator.generate(String.format("%s.%s", name, "docx"),
-                            32142);
+                            6144);
                 }
                 else if (preset.contains("PDF")) {
                     Generator.generate(String.format("%s.%s", name, "pdf"),
-                            32142);
+                            19456);
                 }
                 else if (preset.contains("XLSX")) {
                     Generator.generate(String.format("%s.%s", name, "xlsx"),
-                            32142);
+                            1024000);
                 }
                 else if (preset.contains("TXT")) {
                     Generator.generate(String.format("%s.%s", name, "txt"),
