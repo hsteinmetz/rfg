@@ -34,6 +34,9 @@
                 <item value="DOCX (Word)"/>
                 <item value="XLSX (Excel)"/>
                 <item value="TXT (Text Document)"/>
+                <item value="ODT (Open/Libre Office Writer)"/>
+                <item value="ODP (Open/Libre Office Impress)"/>
+                <item value="ODS (Open/Libre Office Calc)"/>
               </model>
             </properties>
           </component>

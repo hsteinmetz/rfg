@@ -62,22 +62,31 @@ public class RfgGui {
                         Generator.generate(String.format("%s.%s", name, "txt"),
                                 120);
                     }
+                    else if (preset.contains("ODP")) {
+                        Generator.generate(String.format("%s.%s", name, "odp"),
+                                1536000);
+                    }
+                    else if (preset.contains("ODS")) {
+                        Generator.generate(String.format("%s.%s", name, "ods"),
+                                1024000);
+                    }
+                    else if (preset.contains("ODT")) {
+                        Generator.generate(String.format("%s.%s", name, "odt"),
+                                6144);
+                    }
                 }
             }
         });
         btnHelp.addActionListener(new ActionListener() {
             @Override public void actionPerformed(final ActionEvent e) {
-                JOptionPane.showMessageDialog(null,
-                        "Creating a file:\n"
+                JOptionPane.showMessageDialog(null, "Creating a file:\n"
                         + "When creating a file, you can choose wether you want to\n"
-                                + "use a preset or use custom values. A preset contains\n"
-                                + "an appropiate file size and file ending, while\n"
-                                + "custom values should be used when none of the presets\n"
-                                + "are applicable.\n"
-                                + "\n"
-                                + "The created file will always be saved in the directory containing\n"
-                                + "this file (so if you want your file to be created on the desktop, just\n"
-                                + "move this file to the desktop).");
+                        + "use a preset or use custom values. A preset contains\n"
+                        + "an appropiate file size and file ending, while\n" + "custom values should be used when none of the presets\n"
+                        + "are applicable.\n" + "\n" + "The created file will"
+                        + " always be saved in the directory containing\n"
+                        + "this file (so if you want your file to be created on the desktop, just\n"
+                        + "move this file to the desktop).");
             }
         });
     }
@@ -137,6 +146,9 @@ public class RfgGui {
         defaultComboBoxModel1.addElement("DOCX (Word)");
         defaultComboBoxModel1.addElement("XLSX (Excel)");
         defaultComboBoxModel1.addElement("TXT (Text Document)");
+        defaultComboBoxModel1.addElement("ODT (Open/Libre Office Writer)");
+        defaultComboBoxModel1.addElement("ODP (Open/Libre Office Impress)");
+        defaultComboBoxModel1.addElement("ODS (Open/Libre Office Calc)");
         presetSelect.setModel(defaultComboBoxModel1);
         panel1.add(presetSelect,
                 new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST,
