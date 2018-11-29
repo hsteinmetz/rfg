@@ -21,6 +21,7 @@ public class RfgGui {
     private JButton presetCreateButton;
     private JTextField txtLength;
     private JButton createButton;
+    private JButton btnHelp;
 
     // TODO JFileChooser
     public RfgGui() {
@@ -64,6 +65,21 @@ public class RfgGui {
                 }
             }
         });
+        btnHelp.addActionListener(new ActionListener() {
+            @Override public void actionPerformed(final ActionEvent e) {
+                JOptionPane.showMessageDialog(null,
+                        "Creating a file:\n"
+                        + "When creating a file, you can choose wether you want to\n"
+                                + "use a preset or use custom values. A preset contains\n"
+                                + "an appropiate file size and file ending, while\n"
+                                + "custom values should be used when none of the presets\n"
+                                + "are applicable.\n"
+                                + "\n"
+                                + "The created file will always be saved in the directory containing\n"
+                                + "this file (so if you want your file to be created on the desktop, just\n"
+                                + "move this file to the desktop).");
+            }
+        });
     }
 
     public static void main(String[] args) {
@@ -90,16 +106,20 @@ public class RfgGui {
     private void $$$setupUI$$$() {
         pnlMain = new JPanel();
         pnlMain.setLayout(
-                new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
+                new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
         final Spacer spacer1 = new Spacer();
         pnlMain.add(spacer1,
-                new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER,
+                new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER,
                         GridConstraints.FILL_VERTICAL, 1,
                         GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null,
                         0, false));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(
-                new GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1));
+                new GridLayoutManager(3, 2, new Insets(0, 0, 0, 0), -1, -1));
+        Font panel1Font = this.$$$getFont$$$(null, Font.BOLD, -1,
+                panel1.getFont());
+        if (panel1Font != null)
+            panel1.setFont(panel1Font);
         pnlMain.add(panel1,
                 new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER,
                         GridConstraints.FILL_BOTH,
@@ -126,7 +146,7 @@ public class RfgGui {
                         false));
         final Spacer spacer2 = new Spacer();
         panel1.add(spacer2,
-                new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER,
+                new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER,
                         GridConstraints.FILL_VERTICAL, 1,
                         GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null,
                         0, false));
@@ -142,7 +162,11 @@ public class RfgGui {
         final JPanel panel2 = new JPanel();
         panel2.setLayout(
                 new GridLayoutManager(4, 2, new Insets(0, 0, 0, 0), -1, -1));
-        pnlMain.add(panel2,
+        Font panel2Font = this.$$$getFont$$$(null, Font.BOLD, -1,
+                panel2.getFont());
+        if (panel2Font != null)
+            panel2.setFont(panel2Font);
+        panel1.add(panel2,
                 new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER,
                         GridConstraints.FILL_BOTH,
                         GridConstraints.SIZEPOLICY_CAN_SHRINK
@@ -217,6 +241,39 @@ public class RfgGui {
                                 | GridConstraints.SIZEPOLICY_CAN_GROW,
                         GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0,
                         false));
+        btnHelp = new JButton();
+        btnHelp.setText("Help");
+        panel1.add(btnHelp,
+                new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER,
+                        GridConstraints.FILL_HORIZONTAL,
+                        GridConstraints.SIZEPOLICY_CAN_SHRINK
+                                | GridConstraints.SIZEPOLICY_CAN_GROW,
+                        GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0,
+                        false));
+    }
+
+    /**
+     * @noinspection ALL
+     */
+    private Font $$$getFont$$$(String fontName, int style, int size,
+            Font currentFont) {
+        if (currentFont == null)
+            return null;
+        String resultName;
+        if (fontName == null) {
+            resultName = currentFont.getName();
+        }
+        else {
+            Font testFont = new Font(fontName, Font.PLAIN, 10);
+            if (testFont.canDisplay('a') && testFont.canDisplay('1')) {
+                resultName = fontName;
+            }
+            else {
+                resultName = currentFont.getName();
+            }
+        }
+        return new Font(resultName, style >= 0 ? style : currentFont.getStyle(),
+                size >= 0 ? size : currentFont.getSize());
     }
 
     /**
